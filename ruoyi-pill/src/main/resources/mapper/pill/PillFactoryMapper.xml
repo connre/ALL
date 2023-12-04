@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.pill.mapper.PillFactoryMapper">
+
     <resultMap type="PillFactory" id="PillFactoryResult">
         <id property="factoryId" column="factory_id"/>
         <result property="factoryName" column="factory_name"/>
@@ -18,7 +19,28 @@
         <result property="remark" column="remark"/>
     </resultMap>
 
-    <select id="selectPillFactoryList" resultType="com.ruoyi.pill.domain.PillFactory">
+    <sql id="selectFactoryVo">
+        select factory_id, factory_name, factory_code, contact, phone, keyword, status,
+               create_by,
+               create_time, update_by, update_time, remark
+        from pill_factory
+    </sql>
 
+    <select id="selectPillFactoryList" resultType="PillFactory" resultMap="PillFactoryResult">
+        <include refid="selectFactoryVo"></include>
+        <where>
+            <if test="factoryName != null and factoryName != ''">
+                AND factory_name like concat('%', #{factoryName}, '%')
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND keyword like concat('%', #{keyword}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone like concat('%', #{phone}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
     </select>
 </mapper>

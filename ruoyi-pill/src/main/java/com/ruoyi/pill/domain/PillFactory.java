@@ -3,7 +3,6 @@ package com.ruoyi.pill.domain;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 public class PillFactory extends BaseEntity {
-    //添加基本拥有字段
     private static final long serialVersionUID = 1L;
     private Long factoryId;
     private String factoryName;
@@ -12,6 +11,9 @@ public class PillFactory extends BaseEntity {
     private String phone;
     private String keyword;
     private String status;
+    public static long getSerialVersionUID(){
+        return serialVersionUID;
+    }
 
     public Long getFactoryId() {
         return factoryId;

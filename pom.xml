@@ -181,6 +181,7 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
         <module>ruoyi-pill</module>
+        <module>ruoyi-pill</module>
     </modules>
     <packaging>pom</packaging>
 
