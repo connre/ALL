@@ -17,15 +17,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="岗位状态" clearable>
-          <el-option
+      <el-form-item label="岗位状态" prop="status">
+        <el-radio-group v-model="form.status">
+          <el-radio
             v-for="dict in dict.type.sys_normal_disable"
             :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
-        </el-select>
+            :label="dict.value"
+          >{{dict.label}}</el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
